@@ -1,0 +1,67 @@
+<mat-toolbar class="navbar desktop-nav">
+  <div class="container">
+    <div class="nav-content">
+      <!-- Logo a la izquierda -->
+      <div class="logo-container">
+        <span class="material-icons">spa</span>
+        <span class="logo">Green Life</span>
+      </div>
+
+      <!-- Enlaces centrados -->
+      <ul class="nav-links" [ngClass]="{'open': isMobileMenuOpen}">
+        <li>
+          <a routerLink="/inicio" routerLinkActive="active" (click)="closeMobileMenu()">
+            <span class="material-icons">home</span>
+            Inicio
+          </a>
+        </li>
+        <li>
+          <a routerLink="/productos" routerLinkActive="active" (click)="closeMobileMenu()">
+            <span class="material-icons">storefront</span>
+            Productos
+          </a>
+        </li>
+        <li>
+          <a routerLink="/recetas" routerLinkActive="active" (click)="closeMobileMenu()">
+            <span class="material-icons">restaurant_menu</span>
+            Recetas
+          </a>
+        </li>
+        <li>
+          <a routerLink="/contacto" routerLinkActive="active" (click)="closeMobileMenu()">
+            <span class="material-icons">contact_mail</span>
+            Contáctanos
+          </a>
+        </li>
+        <li>
+          <a routerLink="/nosotros" routerLinkActive="active" (click)="closeMobileMenu()">
+            <span class="material-icons">group</span>
+            Nosotros
+          </a>
+        </li>
+        <li>
+          <a routerLink="/login" routerLinkActive="active" (click)="closeMobileMenu()">
+            <span class="material-icons">login</span>
+            Login
+          </a>
+        </li>
+        <li>
+          <a routerLink="/registro" routerLinkActive="active" (click)="closeMobileMenu()">
+            <span class="material-icons">person_add</span>
+            Registro
+          </a>
+        </li>
+      </ul>
+
+      <!-- Botón de menú móvil -->
+      <button mat-icon-button class="menu-toggle md-hidden" (click)="toggleMobileMenu()">
+        <svg *ngIf="!isMobileMenuOpen" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+        <svg *ngIf="isMobileMenuOpen" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</mat-toolbar>

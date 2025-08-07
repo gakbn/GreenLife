@@ -1,0 +1,274 @@
+$crema: #f5f5f0;
+$verde-medio: #6d9663; /* color3 */
+$verde-oscuro: #446c3d; /* color4 */
+$verde-suave: #eaefe9;
+$rojo-agotado: #dc2626;
+$text-dark: #374151; /* Letras oscuras */
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.bg-pattern {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1; /* Debajo del formulario y navbar */
+  --u: 20px; /* Tamaño del bloque */
+  --hue: hue-rotate(0deg); /* Sin cambio de matiz */
+  --c1: #446c3d; /* color4: Verde oscuro */
+  --c2: #95bf8a; /* color2: Verde medio claro */
+  --c3: #e9fbdf; /* color1: Verde claro */
+  --cs: #1c4316; /* color5: Verde muy oscuro */
+  --gp: 50% / calc(var(--u) * 12) calc(var(--u) * 12.8);
+  filter: var(--hue);
+  background:
+    repeating-conic-gradient(
+        from 61.93deg at 75% 36.5%,
+        var(--c1) 0%,
+        var(--c1) 2%,
+        var(--cs) 16%,
+        transparent 0% 100%
+      )
+      var(--gp),
+    repeating-conic-gradient(
+        from 118.07deg at 75% 87.5%,
+        var(--c3) 0% 34.5%,
+        transparent 0% 100%
+      )
+      var(--gp),
+    repeating-conic-gradient(
+        from 118.07deg at 50% 75%,
+        transparent 2%,
+        var(--cs) 17.15%,
+        transparent 0% 100%
+      )
+      var(--gp),
+    repeating-conic-gradient(
+        from 61.93deg at 50% 50%,
+        var(--c3) 0% 15.59%,
+        var(--c2) 0% 32.79%,
+        transparent 0% 100%
+      )
+      var(--gp),
+    repeating-conic-gradient(
+        from -118.07deg at 25% 12.5%,
+        var(--c2) 0% 32.79%,
+        var(--c1) 0% 50%,
+        transparent 0% 100%
+      )
+      var(--gp),
+    repeating-conic-gradient(
+        from -61.93deg at 25% 87.5%,
+        transparent 0 67.25%,
+        var(--c2) 0% 100%
+      )
+      var(--gp),
+    repeating-conic-gradient(
+        from -61.93deg at 50% 75%,
+        transparent 0% 66.5%,
+        var(--c1) 0% 84.25%,
+        var(--c3) 0% 100%
+      )
+      var(--gp),
+    repeating-conic-gradient(
+        from -61.93deg at 25% 37.5%,
+        var(--c3) 0% 34.5%,
+        var(--c1) 0% 67.25%,
+        var(--c2) 0% 100%
+      )
+      var(--gp);
+}
+
+.container {
+  width: 350px; /* Ancho fijo para mantener el tamaño constante */
+  background: #bee9b1; /* color1: Verde claro */
+  background: linear-gradient(0deg, #ffffff 0%, #dde6df 100%); /* De blanco a color1 */
+  border-radius: 40px;
+  padding: 25px 35px;
+  border: 5px solid #ffffff; /* Blanco */
+  box-shadow: 0 30px 30px -20px rgba(149, 191, 138, 0.88); /* Sombra con color2: Verde medio claro */
+  margin: 20px;
+  z-index: 2; /* Encima del fondo */
+  position: relative;
+}
+
+.heading {
+  text-align: center;
+  font-weight: 900;
+  font-size: 30px;
+  color: #476f37; /* color4: Verde oscuro */
+}
+
+.form {
+  margin-top: 40px;
+}
+
+.input-group {
+  position: relative;
+  width: 100%; /* Asegura que el input-group ocupe todo el ancho del contenedor */
+  margin-top: 15px; /* Igual que el primer HTML */
+}
+
+.form .input {
+  width: 88%;
+  background: #ffffff; /* Blanco */
+  border: none;
+  padding: 15px 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 10px -5px rgba(149, 186, 138, 0.5); /* Sombra con color1: Verde claro */
+  border-inline: 2px solid transparent;
+  color: #374151; /* Gris oscuro para letras */
+}
+
+.form .input::placeholder {
+  color: #aaaaaa; /* Gris claro */
+}
+
+.form .input:focus {
+  outline: none;
+  border-inline: 2px solid #6d9663; /* color3: Verde medio */
+}
+
+.form .forgot-password {
+  display: block;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.form .forgot-password a {
+  font-size: 11px;
+  color: #6d9663; /* color3: Verde medio */
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.form .login-button {
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  background: linear-gradient(45deg, #446c3d 0%, #6d9663 100%); /* De color4 a color3 */
+  color: #ffffff; /* Blanco */
+  padding-block: 15px;
+  margin: 20px auto;
+  border-radius: 20px;
+  box-shadow: 0 20px 10px -15px rgba(149, 191, 138, 0.88); /* Sombra con color2 */
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.form .login-button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 23px 10px -20px rgba(149, 191, 138, 0.88); /* Sombra con color2 */
+}
+
+.form .login-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 15px 10px -10px rgba(149, 191, 138, 0.88); /* Sombra con color2 */
+}
+
+.agreement {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.agreement a {
+  text-decoration: none;
+  color: #6d9663; /* color3: Verde medio */
+  font-size: 9px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.error-message {
+  font-size: 0.75rem;
+  color: $rojo-agotado;
+  margin-top: 5px;
+  margin-left: 10px;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.finmate-card {
+  background: linear-gradient(145deg, #ffffff, #dde6df);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 25px;
+  width: 300px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  color: $text-dark;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+}
+
+.finmate-card-balance {
+  margin-bottom: 20px;
+}
+
+.finmate-card-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.finmate-card-label.error {
+  color: $rojo-agotado;
+}
+
+.finmate-card-text {
+  font-size: 0.9rem;
+  color: $text-dark;
+  margin-bottom: 15px;
+}
+
+.modal-close-button {
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  background: linear-gradient(45deg, #446c3d 0%, #6d9663 100%); /* De color4 a color3 */
+  color: #ffffff; /* Blanco */
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.modal-close-button:hover {
+  transform: scale(1.03);
+  background: linear-gradient(45deg, #6d9663 0%, #446c3d 100%);
+}
+
+.modal-close-button:active {
+  transform: scale(0.95);
+}

@@ -1,0 +1,54 @@
+<mat-card class="pedidos-card">
+  <mat-card-header>
+    <mat-card-title>Pedidos Recientes</mat-card-title>
+    <mat-card-subtitle>Gestiona los pedidos de tus clientes</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="table-container">
+      <mat-table [dataSource]="pedidosRecientes" class="mat-elevation-z0">
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+          <mat-cell *matCellDef="let pedido">{{ pedido.id }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="cliente">
+          <mat-header-cell *matHeaderCellDef>Cliente</mat-header-cell>
+          <mat-cell *matCellDef="let pedido">{{ pedido.cliente }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="fecha">
+          <mat-header-cell *matHeaderCellDef>Fecha</mat-header-cell>
+          <mat-cell *matCellDef="let pedido">{{ pedido.fecha }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="estado">
+          <mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+          <mat-cell *matCellDef="let pedido">
+            <span [ngClass]="{
+              'status-badge': true,
+              'status-entregado': pedido.estado === 'Entregado',
+              'status-en-camino': pedido.estado === 'En camino',
+              'status-preparando': pedido.estado === 'Preparando'
+            }">
+              {{ pedido.estado }}
+            </span>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="total">
+          <mat-header-cell *matHeaderCellDef>Total</mat-header-cell>
+          <mat-cell *matCellDef="let pedido">${{ pedido.total.toFixed(2) }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="acciones">
+          <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+          <mat-cell *matCellDef="let pedido">
+            <button mat-icon-button color="primary" aria-label="Editar pedido">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" aria-label="Eliminar pedido">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+  </mat-card-content>
+</mat-card>

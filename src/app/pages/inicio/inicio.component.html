@@ -1,0 +1,117 @@
+<app-navbar></app-navbar>
+<main class="min-h-screen flex flex-col">
+
+  <section class="relative h-screen w-full">
+    <div class="absolute inset-0">
+      <img src="/Lech.jpg" alt="Lechugas frescas" class="object-cover w-full h-full" />
+      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    </div>
+    <div
+      class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center items-center text-center">
+      <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6">Lechugas frescas a tu puerta</h1>
+      <p class="text-xl text-white mb-8 max-w-lg">
+        Cosechadas hoy, entregadas hoy. Disfruta de la frescura de nuestras lechugas hidropónicas.
+      </p>
+      <div>
+        <a routerLink="/productos" class="custom-button">
+          <span>Explora nuestros productos</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-center mb-12">¿Por Qué Elegir Nuestras Lechugas Hidropónicas?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="card text-center">
+          <div class="flex justify-center mb-4">
+            <mat-icon class="text-4xl text-verde-claro">local_florist</mat-icon>
+          </div>
+          <h3 class="mb-2">Frescura Garantizada</h3>
+          <p>Cultivadas en sistemas hidropónicos, nuestras lechugas son cosechadas el mismo día para máxima calidad.</p>
+        </div>
+        <div class="card text-center">
+          <div class="flex justify-center mb-4">
+            <mat-icon class="text-4xl text-verde-claro">local_shipping</mat-icon>
+          </div>
+          <h3 class="mb-2">Entrega a Domicilio</h3>
+          <p>Llevamos nuestras lechugas hidropónicas frescas directamente a tu puerta para tu comodidad.</p>
+        </div>
+        <div class="card text-center">
+          <div class="flex justify-center mb-4">
+            <mat-icon class="text-4xl text-verde-claro">eco</mat-icon>
+          </div>
+          <h3 class="mb-2">Cultivo Sostenible</h3>
+          <p>Nuestra hidroponía usa menos agua y elimina pesticidas, cuidando el planeta y tu salud.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 bg-crema">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h2 class="mb-4">Sobre Nosotros</h2>
+          <p class="mb-4">
+            En Green Life usamos hidroponía para cultivar lechugas frescas, nutritivas y sostenibles, sin suelo ni
+            pesticidas. </p>
+          <p class="mb-6">
+            Nuestra tecnología optimiza el uso de agua y nutrientes, ofreciendo productos de calidad superior
+            directamente a tu mesa.
+          </p>
+          <a routerLink="/nosotros" class="btn-secondary">
+            Conoce más sobre nosotros
+          </a>
+        </div>
+        <div class="relative h-[300px] md:h-[400px]">
+          <img src="/Nosotros.jpg" alt=" nuestro campo de lechugas" class="object-cover w-full h-full rounded-lg" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Recipes Section -->
+  <section class="py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-center mb-12">Recetas Destacadas</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="card">
+          <h3 class="mb-2">Ensalada César Clásica</h3>
+          <p class="mb-4">Una ensalada César clásica con la suave y fresca Lechuga Grazion, aderezo casero y crutones
+            crujientes.</p>
+          <a routerLink="/recetas" class="btn-secondary">Ver receta</a>
+        </div>
+        <div class="card">
+          <h3 class="mb-2">Wrap de Lechuga Stharfither con Pollo
+          </h3>
+          <p class="mb-4">Un wrap saludable usando las hojas crujientes de Lechuga Stharfither como envoltura para un
+            sabroso pollo.</p>
+          <a routerLink="/recetas" class="btn-secondary">Ver receta</a>
+        </div>
+        <div class="card">
+          <h3 class="mb-2">Ensalada con Lechuga Skay Ruby
+          </h3>
+          <p class="mb-4">Una ensalada fresca y vibrante con Skay Ruby, combinada con sabores mediterráneos como queso
+            feta y aceitunas.</p>
+          <a routerLink="/recetas" class="btn-secondary">Ver receta</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="py-12 bg-verde-claro">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="mb-4">Descubre Nuestra Variedad</h2>
+      <p class="mb-6 max-w-2xl mx-auto">
+        Explora nuestras lechugas cultivadas con hidroponía, perfectas para tus platos favoritos. </p>
+      <a routerLink="/productos" class="btn-secondary">
+        Ver todos los productos
+      </a>
+    </div>
+  </section>
+
+  <app-footer></app-footer>
+</main>

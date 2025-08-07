@@ -1,0 +1,75 @@
+<main class="min-h-screen flex items-center justify-center">
+  <div class="bg-pattern"></div>
+  <app-navbar></app-navbar>
+  <div class="container">
+    <div class="heading">Iniciar Sesión</div>
+    <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <input
+          class="input"
+          type="text"
+          name="username"
+          id="username"
+          placeholder="Correo Electrónico"
+          formControlName="username"
+        />
+        <div class="error-message" *ngIf="loginForm.get('username')?.hasError('required') && loginForm.get('username')?.touched">
+          Por favor, rellena este campo obligatorio
+        </div>
+        <div class="error-message" *ngIf="loginForm.get('username')?.hasError('pattern') && loginForm.get('username')?.touched">
+          Por favor, ingresa un correo electrónico válido
+        </div>
+      </div>
+      <div class="input-group">
+        <input
+          class="input"
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Contraseña"
+          formControlName="password"
+        />
+        <div class="error-message" *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">
+          Por favor, rellena este campo obligatorio
+        </div>
+        <div class="error-message" *ngIf="loginForm.get('password')?.hasError('maxlength') && loginForm.get('password')?.touched">
+          La contraseña no debe exceder los 20 caracteres
+        </div>
+      </div>
+      <input class="login-button" type="submit" value="Iniciar Sesión" [disabled]="loginForm.invalid">
+      <div class="error-message" *ngIf="formSubmitted && isFormEmpty()">
+        Por favor, ingrese los datos requeridos para iniciar sesión
+      </div>
+    </form>
+    <span class="agreement">
+      <a href="javascript:void(0)" (click)="showLicenseModal()">Conoce el acuerdo de licencia de usuario</a>
+    </span>
+
+    <!-- Modal para mostrar error -->
+    <div class="modal" *ngIf="showModal">
+      <div class="finmate-card">
+        <div class="finmate-card-balance">
+          <p class="finmate-card-label error">
+            {{ modalMessage }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para el acuerdo de licencia -->
+    <div class="modal" *ngIf="showLicenseModalFlag">
+      <div class="finmate-card">
+        <div class="finmate-card-balance">
+          <p class="finmate-card-label">Acuerdo de Licencia de Usuario</p>
+          <p class="finmate-card-text">
+            Al iniciar sesión, aceptas los términos y condiciones de nuestro servicio. 
+            Nos comprometemos a proteger tu información personal y a ofrecerte productos 
+            hidropónicos de la más alta calidad. Para más detalles, consulta nuestra 
+            política de privacidad y términos de uso en nuestro sitio web.
+          </p>
+          <button class="modal-close-button" (click)="closeLicenseModal()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

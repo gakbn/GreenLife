@@ -1,0 +1,78 @@
+<div class="min-h-screen flex flex-col">
+  <app-navbar></app-navbar>
+
+  <main class="flex-1 py-12 px-4 bg-crema">
+    <div class="container mx-auto">
+      <div class="text-center mb-12">
+      </div>
+
+      <!-- Recetas -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-bold text-green-800 mb-6">Recetas Deliciosas</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <mat-card class="card relative" *ngFor="let receta of recetas">
+            <img mat-card-image [src]="receta.imagen" [alt]="receta.titulo" class="image" />
+            <mat-card-header>
+              <mat-card-title>{{ receta.titulo }}</mat-card-title>
+              <mat-card-subtitle>
+                <div class="flex items-center space-x-4 mt-2">
+                  <div class="flex items-center">
+                    <mat-icon class="mr-2">schedule</mat-icon>
+                    <span class="text-sm text-gray-500">{{ receta.tiempo }}</span>
+                  </div>
+                  <div class="flex items-center">
+                    <mat-icon class="mr-2">restaurant</mat-icon>
+                    <span class="text-sm text-gray-500">{{ receta.dificultad }}</span>
+                  </div>
+                </div>
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p class="text-gray-600 mb-4">{{ receta.descripcion }}</p>
+              <div>
+                <h4 class="font-medium mb-2">Ingredientes principales:</h4>
+                <ul class="list-disc pl-5 text-sm text-gray-600">
+                  <li *ngFor="let ingrediente of receta.ingredientes">{{ ingrediente }}</li>
+                </ul>
+              </div>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-raised-button color="primary" class="w-full" (click)="viewRecipe(receta)">
+                Ver receta completa
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+        <div> 
+          
+        </div>
+      <div class="text-center mb-8">
+          <h1 class="text-1 font-bold text-green-800 mb-4">¡Prueba estas recetas o descubre más en nuestras fuentes favoritas!</h1>
+        </div>
+      </section>
+
+      <!-- Tips -->
+      <section>
+        <h2 class="text-2xl font-bold text-green-800 mb-6">Tips y Consejos</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <mat-card class="card relative" *ngFor="let tip of tips">
+            <img mat-card-image [src]="tip.imagen" [alt]="tip.titulo" class="image-tip" />
+            <mat-card-header>
+              <mat-card-title class="text-lg">{{ tip.titulo }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p class="text-gray-600">{{ tip.descripcion }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-stroked-button class="w-full border-verde-medio text-verde-medio" (click)="readMore(tip)">
+                Leer más
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <app-footer></app-footer>
+</div>

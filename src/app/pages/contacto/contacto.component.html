@@ -1,0 +1,260 @@
+<div class="min-h-screen flex flex-col">
+  <app-navbar></app-navbar>
+
+  <main class="flex-1 py-12 px-4 bg-crema">
+    <div class="container mx-auto">
+      <div class="text-center mb-12">
+        <h1 class="text-3xl font-bold text-verde-oscuro mb-4">Contacto</h1>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        <!-- Formulario de contacto -->
+        <div class="space-y-6">
+          <mat-card class="card">
+            <mat-card-header>
+              <mat-card-title class="text-verde-oscuro">Envíanos un mensaje</mat-card-title>
+              <mat-card-subtitle class="text-verde-oscuro">Completa el formulario y te responderemos lo antes posible.</mat-card-subtitle>
+            </mat-card-header>
+            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+              <mat-card-content class="space-y-6">
+                <div class="input-group">
+                  <input
+                    matInput
+                    formControlName="nombre"
+                    required
+                    type="text"
+                    autocomplete="off"
+                    class="input"
+                  />
+                  <label class="user-label">Nombre completo</label>
+                  <mat-error *ngIf="contactForm.get('nombre')?.hasError('required') && contactForm.get('nombre')?.touched">
+                    El nombre es requerido
+                  </mat-error>
+                </div>
+                <div class="input-group">
+                  <input
+                    matInput
+                    formControlName="email"
+                    type="email"
+                    required
+                    autocomplete="off"
+                    class="input"
+                  />
+                  <label class="user-label">Correo electrónico</label>
+                  <mat-error *ngIf="contactForm.get('email')?.hasError('required') && contactForm.get('email')?.touched">
+                    El correo es requerido
+                  </mat-error>
+                  <mat-error *ngIf="contactForm.get('email')?.hasError('email') && contactForm.get('email')?.touched">
+                    Ingresa un correo válido
+                  </mat-error>
+                </div>
+                <div class="input-group">
+                  <input
+                    matInput
+                    formControlName="telefono"
+                    type="tel"
+                    autocomplete="off"
+                    class="input"
+                  />
+                  <label class="user-label">Teléfono (opcional)</label>
+                </div>
+                <div class="input-group">
+                  <textarea
+                    matInput
+                    formControlName="mensaje"
+                    required
+                    rows="5"
+                    autocomplete="off"
+                    class="input"
+                  ></textarea>
+                  <label class="user-label">Mensaje</label>
+                  <mat-error *ngIf="contactForm.get('mensaje')?.hasError('required') && contactForm.get('mensaje')?.touched">
+                    El mensaje es requerido
+                  </mat-error>
+                </div>
+              </mat-card-content>
+              <mat-card-actions>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  type="submit"
+                  class="w-full"
+                  [disabled]="contactForm.invalid"
+                >
+                  <mat-icon class="mr-2">send</mat-icon>
+                  Enviar mensaje
+                </button>
+              </mat-card-actions>
+            </form>
+          </mat-card>
+
+          <mat-card class="card">
+            <mat-card-header>
+              <mat-card-title class="text-verde-oscuro">¿Por qué contactarnos?</mat-card-title>
+              <mat-card-subtitle class="text-verde-oscuro">Estamos aquí para ayudarte con cualquier necesidad.</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content class="space-y-4">
+              <ul class="list-disc pl-5 text-gray-600">
+                <li>Consulta sobre nuestros productos hidropónicos frescos y sus beneficios.</li>
+                <li>Solicita pedidos personalizados o al mayoreo para tus necesidades.</li>
+                <li>Comparte tus sugerencias o experiencias para mejorar nuestro servicio.</li>
+                <li>Resuelve cualquier duda con nuestro equipo de soporte dedicado.</li>
+              </ul>
+              <p class="text-gray-600">
+                Nuestro compromiso es ofrecerte la mejor atención y productos de calidad. 
+              </p>
+            </mat-card-content>
+          </mat-card>
+          <mat-card class="card">
+            <mat-card-header>
+              <mat-card-title class="text-verde-oscuro">Nuestra Promesa</mat-card-title>
+              <mat-card-subtitle class="text-verde-oscuro">Compromiso con la calidad y la sostenibilidad.</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content class="space-y-4">
+              <ul class="list-disc pl-5 text-gray-600">
+                <li>Productos hidropónicos frescos, cultivados con técnicas sostenibles.</li>
+                <li>Entregas puntuales y confiables para garantizar tu satisfacción.</li>
+                <li>Atención personalizada para resolver tus dudas y necesidades.</li>
+                <li>Compromiso con el medio ambiente en cada paso del proceso.</li>
+              </ul>
+            
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <!-- Información de contacto y mapa -->
+        <div class="space-y-6">
+          <mat-card class="card">
+            <mat-card-header>
+              <mat-card-title class="text-verde-oscuro">Información de contacto</mat-card-title>
+              <mat-card-subtitle class="text-verde-oscuro">Otras formas de contactarnos</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content class="space-y-6">
+              <div>
+                <h3 class="font-medium">Teléfonos</h3>
+                <ul class="space-y-2">
+                  <li class="flex items-center">
+                    <mat-icon class="text-verde-medio">phone</mat-icon>
+                    <span>+52 238 178 1863</span>
+                  </li>
+                  <li class="flex items-center">
+                    <mat-icon class="text-verde-medio">phone</mat-icon>
+                    <span>+52 238 120 5966</span>
+                  </li>
+                  <li class="flex items-center">
+                    <mat-icon class="text-verde-medio">phone</mat-icon>
+                    <span>+52 238 188 3674</span>
+                  </li>
+                </ul>
+                <p class="text-sm text-gray-500">Lunes a Viernes: 9:00 - 18:00</p>
+              </div>
+              <div>
+                <h3 class="font-medium">Correos electrónicos</h3>
+                <ul class="space-y-2">
+                  <li class="flex items-center">
+                    <mat-icon class="text-verde-medio">email</mat-icon>
+                    <span>romero_carmen&#64;outlook.es</span>
+                  </li>
+                  <li class="flex items-center">
+                    <mat-icon class="text-verde-medio">email</mat-icon>
+                    <span>amada&#64;outlook.es</span>
+                  </li>
+                  <li class="flex items-center">
+                    <mat-icon class="text-verde-medio">email</mat-icon>
+                    <span>flavia&#64;outlook.es</span>
+                  </li>
+                </ul>
+                <p class="text-sm text-gray-500">Te respondemos en menos de 24 horas</p>
+              </div>
+              <div class="flex items-start">
+                <mat-icon class="text-verde-medio mt-1">place</mat-icon>
+                <div>
+                  <h3 class="font-medium">Dirección</h3>
+                  <p class="text-gray-600">Calle Solidaridad, Col. Juan Pablo II</p>
+                  <p class="text-sm text-gray-500">Código Postal: 75710</p>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="card-no-shadow">
+            <mat-card-header>
+              <mat-card-title class="text-verde-oscuro">Área de entrega</mat-card-title>
+              <mat-card-subtitle class="text-verde-oscuro">Zonas donde realizamos entregas a domicilio</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="relative h-250px w-full rounded-md overflow-hidden">
+                <img src="/ubicacion.png" alt="Mapa de área de entrega" class="image-map" />
+              </div>
+              <p class="mt-4 text-sm text-gray-600">
+                Realizamos entregas en un radio de 15 km desde nuestra ubicación central. Consulta si tu dirección
+                está dentro de nuestra zona de cobertura.
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+
+      <!-- Preguntas frecuentes -->
+      <div class="mt-16">
+        <h2 class="text-2xl font-bold text-verde-oscuro mb-6 text-center">Preguntas Frecuentes</h2>
+        <mat-grid-list cols="2" rowHeight="200px" gutterSize="16px" class="grid">
+          <mat-grid-tile>
+            <mat-card class="card">
+              <mat-card-header>
+                <mat-card-title class="text-lg">¿En cuánto tiempo recibiré mi pedido?</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p class="text-gray-600">
+                  Los pedidos realizados con un día de anticipación se entregan al día siguiente. 
+                  Asegúrate de confirmar tu orden para una entrega más rápida.
+                </p>
+              </mat-card-content>
+            </mat-card>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-card class="card">
+              <mat-card-header>
+                <mat-card-title class="text-lg">¿Hacen envíos a mi zona?</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p class="text-gray-600">
+                  Cubrimos la mayoría de las zonas dentro de la ciudad y áreas cercanas. 
+                  Contáctanos para confirmar si llegamos a tu dirección.
+                </p>
+              </mat-card-content>
+            </mat-card>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-card class="card">
+              <mat-card-header>
+                <mat-card-title class="text-lg">¿Qué métodos de pago aceptan?</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p class="text-gray-600">
+                  Por el momento, aceptamos pagos en efectivo al momento de la entrega. 
+                  Pronto habilitaremos opciones de pago con tarjeta de crédito/débito online.
+                </p>
+              </mat-card-content>
+            </mat-card>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-card class="card">
+              <mat-card-header>
+                <mat-card-title class="text-lg">¿Puedo programar mi entrega?</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p class="text-gray-600">
+                  Sí, puedes elegir una fecha y hora específica al hacer tu pedido. 
+                  Contáctanos si necesitas coordinar un horario especial.
+                </p>
+              </mat-card-content>
+            </mat-card>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </div>
+  </main>
+
+  <app-footer></app-footer>
+</div>

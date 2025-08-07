@@ -1,0 +1,71 @@
+<div class="admin-container">
+  <div class="sidebar">
+    <h2>Panel Administrativo</h2>
+    <p>Lechugas Frescas</p>
+    <h3>______________________________</h3>
+    <nav>
+      <ul>
+        <li>
+          <a routerLink="/admin/dashboard" routerLinkActive="active">
+            <svg class="menu-icon" viewBox="0 0 24 24">
+              <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" fill="currentColor"/>
+            </svg>
+            Dashboard
+          </a>
+        </li>
+        <li>
+          <a routerLink="/admin/repartidores" routerLinkActive="active">
+            <svg class="menu-icon" viewBox="0 0 24 24">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="currentColor"/>
+            </svg>
+            Administradores
+          </a>
+        </li>
+        <li>
+          <a routerLink="/admin/pedidos" routerLinkActive="active">
+            <svg class="menu-icon" viewBox="0 0 24 24">
+              <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" fill="currentColor"/>
+            </svg>
+            Pedidos
+          </a>
+        </li>
+        <li>
+          <a routerLink="/admin/inventario" routerLinkActive="active">
+            <svg class="menu-icon" viewBox="0 0 24 24">
+              <path d="M20 2H4c-1.1 0-2 .9-2 2v3.01c0 .72.43 1.34 1 1.69V20c0 1.1 1.1 2 2 2h14c.9 0 2-.9 2-2V8.7c.57-.35 1-.97 1-1.69V4c0-1.1-.9-2-2-2zm-1 18H5V9h14v11zm1-13H4V4h16v3z" fill="currentColor"/>
+            </svg>
+            Inventario
+          </a>
+        </li>
+        <li>
+          <a routerLink="/admin/clientes" routerLinkActive="active">
+            <svg class="menu-icon" viewBox="0 0 24 24">
+              <path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="currentColor"/>
+            </svg>
+            Clientes
+          </a>
+        </li>
+        <li>
+          <a routerLink="/admin/estadisticas" routerLinkActive="active">
+            <svg class="menu-icon" viewBox="0 0 24 24">
+              <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H7v-4h4v4zm0-5H7V8h4v4zm5 5h-4v-7h4v7zm0-8h-4V7h4v2z" fill="currentColor"/>
+            </svg>
+            Almacen
+          </a>
+        </li>
+            <h3>______________________________</h3>
+        <li class="logout-item">
+          <a (click)="logout()" class="logout-button">
+            <svg class="menu-icon" viewBox="0 0 24 24">
+              <path d="M10 17l5-5-5-5v3H3v4h7v3zm11-1V8c0-1.1-.9-2-2-2H5v2h14v8h2z" fill="currentColor"/>
+            </svg>
+            Cerrar Sesión
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

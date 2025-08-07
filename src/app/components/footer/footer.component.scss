@@ -1,0 +1,172 @@
+.bg-verde-oscuro {
+  background-color: #446c3d; /* color4: Verde oscuro */
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.max-w-7xl {
+  max-width: 1280px;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-cols-1 {
+  grid-template-columns: 1fr;
+}
+
+.md\:grid-cols-3 {
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.gap-8 {
+  gap: 2rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.h-6 {
+  height: 1.5rem;
+}
+
+.w-6 {
+  width: 1.5rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-verde-claro {
+  color: #bee9b1; /* color1: Verde claro */
+}
+
+.space-x-4 {
+  & > * + * {
+    margin-left: 1rem;
+  }
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.space-y-2 {
+  & > * + * {
+    margin-top: 0.5rem;
+  }
+}
+
+a {
+  &.text-verde-claro {
+    color: #bee9b1; /* color1: Verde claro */
+    text-decoration: none;
+
+    &:hover {
+      color: #ffffff;
+    }
+  }
+}
+
+.h-4 {
+  height: 1rem;
+}
+
+.w-4 {
+  width: 1rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.border-t {
+  border-top-width: 1px;
+}
+
+.border-verde-medio {
+  border-color: #6d9663; /* color3: Verde medio */
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.pt-8 {
+  padding-top: 2rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.h-5 {
+  height: 1.25rem;
+}
+
+.w-5 {
+  width: 1.25rem;
+}
+
+mat-icon {
+  &.h-6 {
+    font-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+  }
+
+  &.h-5 {
+    font-size: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    line-height: 1.25rem;
+  }
+
+  &.h-4 {
+    font-size: 1rem;
+    width: 1rem;
+    height: 1rem;
+    line-height: 1rem;
+  }
+}

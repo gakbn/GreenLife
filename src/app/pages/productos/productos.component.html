@@ -1,0 +1,179 @@
+<main class="min-h-screen flex flex-col">
+  <app-navbar></app-navbar>
+
+  <section class="py-8 bg-crema">
+    <div class="container">
+      <!--<h1 class="mb-6">Nuestros Productos</h1>-->
+
+      <!-- Ofertas destacadas -->
+      <div class="mb-12">
+        <h2 class="mb-4">Ofertas Destacadas</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <mat-card class="card relative" *ngFor="let product of filterByOffer(products)">
+            <div class="offer-badge" *ngIf="product.oferta">¡Oferta!</div>
+            <div class="image-container">
+              <img
+                mat-card-image
+                [src]="product.imagen"
+                [alt]="product.nombre"
+                class="image"
+                *ngIf="product.imagen"
+                (error)="handleImageError($event)"
+              />
+            </div>
+            <mat-card-content>
+              <h3 class="mb-2">{{ product.nombre }}</h3>
+              <p class="text-sm mb-2">{{ product.descripcion }}</p>
+              <p class="stock-display mb-3" *ngIf="product.stock > 0">Stock: {{ product.stock }}</p>
+              <p class="stock-display stock-agotado mb-3" *ngIf="product.stock === 0">Producto agotado por el momento</p>
+              <div class="flex justify-between items-center">
+                <div>
+                  <span
+                    class="line-through text-gray-500 mr-2"
+                    *ngIf="product.oferta && product.precioOriginal"
+                    >${{ formatPrice(product.precioOriginal) }}</span
+                  >
+                  <span class="font-bold text-verde-oscuro"
+                    >${{ formatPrice(product.precio) }}</span
+                  >
+                </div>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  class="btn-primary flex items-center"
+                  (click)="viewDetails(product)"
+                >
+                  <mat-icon class="mr-1">add</mat-icon>
+                  Más
+                </button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      <h2 class="mb-4">Categorias</h2>
+
+      <!-- Filtros de categoría -->
+      <div class="mb-6 flex flex-wrap gap-2">
+        <button
+          mat-raised-button
+          [color]="selectedCategory === 'todos' ? 'primary' : 'accent'"
+          (click)="filterByCategory('todos')"
+        >
+          Todos
+        </button>
+        <button
+          mat-raised-button
+          [color]="selectedCategory === 'lechugas' ? 'primary' : 'accent'"
+          (click)="filterByCategory('lechugas')"
+        >
+          Lechugas
+        </button>
+        <button
+          mat-raised-button
+          [color]="selectedCategory === 'vegetales' ? 'primary' : 'accent'"
+          (click)="filterByCategory('vegetales')"
+        >
+          Vegetales
+        </button>
+        <button
+          mat-raised-button
+          [color]="selectedCategory === 'Otros' ? 'primary' : 'accent'"
+          (click)="filterByCategory('otros')"
+        >
+          Otros
+        </button>
+      </div>
+
+      <!-- Catálogo completo -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <mat-card class="card relative" *ngFor="let product of filteredProducts">
+          <div class="offer-badge" *ngIf="product.oferta">¡Oferta!</div>
+          <div class="image-container">
+            <img
+              mat-card-image
+              [src]="product.imagen"
+              [alt]="product.nombre"
+              class="image"
+              *ngIf="product.imagen"
+              (error)="handleImageError($event)"
+            />
+          </div>
+          <mat-card-content>
+            <h3 class="mb-2">{{ product.nombre }}</h3>
+            <p class="text-sm mb-2">{{ product.descripcion }}</p>
+            <p class="stock-display mb-3" *ngIf="product.stock > 0">Stock: {{ product.stock }}</p>
+            <p class="stock-display stock-agotado mb-3" *ngIf="product.stock === 0">Producto agotado por el momento</p>
+            <div class="flex justify-between items-center">
+              <div>
+                <span
+                  class="line-through text-gray-500 mr-2"
+                  *ngIf="product.oferta && product.precioOriginal"
+                  >${{ formatPrice(product.precioOriginal) }}</span
+                >
+                <span class="font-bold text-verde-oscuro"
+                  >${{ formatPrice(product.precio) }}</span
+                >
+              </div>
+              <button
+                mat-raised-button
+                color="primary"
+                class="btn-primary flex items-center"
+                (click)="viewDetails(product)"
+              >
+                <mat-icon class="mr-1">add</mat-icon>
+                Más
+              </button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()">
+        <mat-card class="modal-card" (click)="$event.stopPropagation()" *ngIf="selectedProduct">
+          <div class="offer-badge" *ngIf="selectedProduct.oferta">¡Oferta!</div>
+          <div class="image-container">
+            <img
+              mat-card-image
+              [src]="selectedProduct.imagen"
+              [alt]="selectedProduct.nombre"
+              class="image"
+              *ngIf="selectedProduct.imagen"
+              (error)="handleImageError($event)"
+            />
+          </div>
+          <mat-card-content>
+            <h3 class="mb-2">{{ selectedProduct.nombre }}</h3>
+            <p class="text-sm mb-2">{{ selectedProduct.descripcion }}</p>
+            <p class="stock-display mb-3" *ngIf="selectedProduct.stock > 0">Stock: {{ selectedProduct.stock }}</p>
+            <p class="stock-display stock-agotado mb-3" *ngIf="selectedProduct.stock === 0">Producto agotado por el momento</p>
+            <div class="flex justify-between items-center">
+              <div>
+                <span
+                  class="line-through text-gray-500 mr-2"
+                  *ngIf="selectedProduct.oferta && selectedProduct.precioOriginal"
+                  >${{ formatPrice(selectedProduct.precioOriginal) }}</span
+                >
+                <span class="font-bold text-verde-oscuro"
+                  >${{ formatPrice(selectedProduct.precio) }}</span
+                >
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button
+              mat-raised-button
+              class="btn-close"
+              (click)="closeModal()"
+            >
+              Cerrar
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+
+  <app-footer></app-footer>
+</main>

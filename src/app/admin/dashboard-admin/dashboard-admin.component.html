@@ -1,0 +1,93 @@
+<main class="dashboard-content">
+  <div class="metrics-grid">
+    <mat-card class="metric-card">
+      <div class="card-header">
+        <h3 class="card-title">Total Almacenes</h3>
+        <mat-icon>warehouse</mat-icon>
+      </div>
+      <p class="metric-value">{{ metrics.totalOrders }}</p>
+      <p class="metric-subtitle">Últimos 7 días</p>
+    </mat-card>
+    <mat-card class="metric-card">
+      <div class="card-header">
+        <h3 class="card-title">Ventas</h3>
+        <mat-icon>bar_chart</mat-icon>
+      </div>
+      <p class="metric-value">$2,450</p>
+      <p class="metric-subtitle">Últimos 7 días</p>
+    </mat-card>
+    <mat-card class="metric-card">
+      <div class="card-header">
+        <h3 class="card-title">Clientes</h3>
+        <mat-icon>group</mat-icon>
+      </div>
+      <p class="metric-value">{{ metrics.activeClients }}</p>
+      <p class="metric-subtitle">Total activos</p>
+    </mat-card>
+    <mat-card class="metric-card">
+      <div class="card-header">
+        <h3 class="card-title">Productos</h3>
+        <mat-icon>inventory_2</mat-icon>
+      </div>
+      <p class="metric-value">{{ metrics.totalProducts }}</p>
+      <p class="metric-subtitle">En inventario</p>
+    </mat-card>
+  </div>
+
+  <div class="info-grid">
+    <mat-card class="info-card">
+      <div class="card-header">
+        <h2 class="card-title">Inventario Bajo</h2>
+                        <button mat-button class="cancel-button" [routerLink]="['/admin/inventario']">Ver todos</button>
+      </div>
+      <mat-table [dataSource]="lowInventory | slice:0:5" class="mat-elevation-z0">
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef>Producto</mat-header-cell>
+          <mat-cell *matCellDef="let product">{{ product.name }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="stock">
+          <mat-header-cell *matHeaderCellDef>Stock</mat-header-cell>
+          <mat-cell *matCellDef="let product">{{ product.stock }} unidades</mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="['name', 'stock']"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['name', 'stock'];"></mat-row>
+      </mat-table>
+    </mat-card>
+    <mat-card class="info-card">
+      <div class="card-header">
+        <h2 class="card-title">Administradores Recientes</h2>
+                <button mat-button class="cancel-button" [routerLink]="['/admin/repartidores']">Ver todos</button>
+      </div>
+      <mat-table [dataSource]="activeAdmins | slice:0:5" class="mat-elevation-z0">
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+          <mat-cell *matCellDef="let admin">{{ admin.name }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef>Correo</mat-header-cell>
+          <mat-cell *matCellDef="let admin">{{ admin.email }}</mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </mat-card>
+    <mat-card class="info-card">
+      <div class="card-header">
+        <h2 class="card-title">Productos Nuevos/Modificados</h2>
+        <button mat-button class="cancel-button" [routerLink]="['/admin/inventario']">Ver todos</button>
+      </div>
+      <mat-table [dataSource]="newOrModifiedProducts | slice:0:5" class="mat-elevation-z0">
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef>Producto</mat-header-cell>
+          <mat-cell *matCellDef="let product">{{ product.name }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="stock">
+          <mat-header-cell *matHeaderCellDef>Stock</mat-header-cell>
+          <mat-cell *matCellDef="let product">{{ product.stock }} unidades</mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="productColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: productColumns;"></mat-row>
+      </mat-table>
+    </mat-card>
+  </div>
+</main>
