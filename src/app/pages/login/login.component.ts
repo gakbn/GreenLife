@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -15,9 +16,9 @@ export class LoginComponent {
   showModal: boolean = false;
   modalMessage: string = '';
   showLicenseModalFlag: boolean = false;
-  private apiUrl = 'http://74.208.44.191:3004/api/login';
-  private adminUrl = 'http://74.208.44.191:3004/api/admin';
-  private usuarioUrl = 'http://74.208.44.191:3004/api/usuario';
+  private apiUrl = `${environment.apiUrl}/login`;
+  private adminUrl = `${environment.apiUrl}/admin`;
+  private usuarioUrl = `${environment.apiUrl}/usuario`;
 
   constructor(private http: HttpClient, private router: Router, private fb: FormBuilder) {
     this.loginForm = this.fb.group({
@@ -26,13 +27,11 @@ export class LoginComponent {
     });
   }
 
-  // Verifica si el formulario está completamente vacío
   isFormEmpty(): boolean {
     const values = this.loginForm.value;
     return !values.username && !values.password;
   }
 
-  // Encabezados para la API
   private getAuthHeaders(): HttpHeaders {
     const password = 'Gr33nL1f3#cgm#';
     return new HttpHeaders({
@@ -60,11 +59,9 @@ export class LoginComponent {
       contrasena: this.loginForm.get('password')?.value
     };
 
-    // Llamada al endpoint de login
     this.http.post(this.apiUrl, loginData, { headers: this.getAuthHeaders() })
       .subscribe({
         next: (response: any) => {
-          // Verificar si el usuario es administrador
           this.http.get(this.adminUrl, { headers: this.getAuthHeaders() })
             .subscribe({
               next: (adminResponse: any) => {
@@ -72,14 +69,12 @@ export class LoginComponent {
                 const isAdmin = admins.some((admin: any) => admin.correo === loginData.correo);
 
                 if (isAdmin) {
-                  // Guardar rol en localStorage
                   localStorage.setItem('role', 'admin');
-                  localStorage.setItem('token', 'admin-token'); // Token genérico, ajusta si la API devuelve uno
+                  localStorage.setItem('token', 'admin-token');
                   this.showModal = false;
                   this.formSubmitted = false;
                   this.router.navigate(['/admin']);
                 } else {
-                  // Verificar si es usuario normal
                   this.http.get(this.usuarioUrl, { headers: this.getAuthHeaders() })
                     .subscribe({
                       next: (usuarioResponse: any) => {
@@ -87,9 +82,8 @@ export class LoginComponent {
                         const isUsuario = usuarios.some((usuario: any) => usuario.correo === loginData.correo);
 
                         if (isUsuario) {
-                          // Guardar rol en localStorage
                           localStorage.setItem('role', 'usuario');
-                          localStorage.setItem('token', 'usuario-token'); // Token genérico
+                          localStorage.setItem('token', 'usuario-token');
                           this.showModal = true;
                           this.modalMessage = 'No tienes una cuenta de administrador';
                           setTimeout(() => {
@@ -98,7 +92,6 @@ export class LoginComponent {
                             this.router.navigate(['/inicio']);
                           }, 2000);
                         } else {
-                          // Correo no encontrado en admin ni usuario
                           this.showModal = true;
                           this.modalMessage = 'Correo o contraseña incorrectos';
                           setTimeout(() => {
@@ -128,13 +121,19 @@ export class LoginComponent {
               }
             });
         },
-        error: () => {
+        error: (error) => {
+          let message = 'Correo o contraseña incorrectos';
+          if (error.message.includes('Mixed Content')) {
+            message = 'Error: La API no es accesible debido a restricciones de seguridad del navegador';
+          } else if (error.message.includes('CORS')) {
+            message = 'Error: La API no permite acceso desde este dominio';
+          }
           this.showModal = true;
-          this.modalMessage = 'Correo o contraseña incorrectos';
+          this.modalMessage = message;
           setTimeout(() => {
             this.showModal = false;
             this.formSubmitted = false;
-          }, 2000);
+          }, 5000);
         }
       });
   }

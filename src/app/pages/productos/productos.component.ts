@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 // Interfaz para los datos crudos de la API
 interface ProductoRaw {
@@ -41,13 +42,13 @@ export class ProductosComponent implements OnInit {
   selectedCategory: string = 'todos';
   selectedProduct: Product | null = null; // Producto seleccionado para el modal
   isModalOpen: boolean = false; // Controla la visibilidad del modal
-  private apiUrl = 'http://74.208.44.191:3004/api/producto';
+  private apiUrl = `${environment.apiUrl}/producto`;
 
   constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.fetchProducts();
-          window.scrollTo(0, 0); 
+    window.scrollTo(0, 0); 
   }
 
   // Helper method to create headers with the Bearer token
